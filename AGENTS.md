@@ -9,9 +9,9 @@ submodules with independent histories; a catalog commit may advance a submodule 
 collapse project source into the root repository. Never commit `.codex-subagents/` or local `.env`
 state.
 
-Local Node modules use private `@agentic-orch/*` names with `workspace:*` and sibling workspace
-entries. Python sibling reuse uses explicit uv path sources. Cross-language reuse goes through a
-versioned HTTP or artifact boundary.
+Local Node modules use unpublished `@agentic-orch/*` names with `workspace:*` and sibling workspace
+entries. Repository visibility does not imply registry publication. Python sibling reuse uses
+explicit uv path sources. Cross-language reuse goes through a versioned HTTP or artifact boundary.
 
 `benchmark-audit-core` is a reusable reference that should not be reorganized with the rest of the
 folder. The CS-E4645 repository is a finalized research artifact. Observer is mid-migration. Avoid

@@ -32,8 +32,9 @@ The detailed dependency and ownership rules live in [STANDARDIZATION.md](STANDAR
 
 ## Local dependency policy
 
-- Node consumers use the private `@agentic-orch/*` names with `workspace:*` and explicit sibling
-  entries in their own `pnpm-workspace.yaml`.
+- Node consumers use the unpublished `@agentic-orch/*` names with `workspace:*` and explicit
+  sibling entries in their own `pnpm-workspace.yaml`. Repository visibility does not turn those
+  source modules into registry packages.
 - Python consumers keep a normal version constraint and use `[tool.uv.sources]` for an explicit
   editable sibling path.
 - Cross-language reuse goes through a versioned HTTP or artifact contract, never by importing a

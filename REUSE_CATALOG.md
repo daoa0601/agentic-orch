@@ -37,8 +37,9 @@ with local choices documented in its `UPSTREAM.md`.
 | [`benchmark-audit-core`](benchmark-audit-core/README.md) | Portable Python audit schemas, canonical hashing, evidence references, seals, report rendering, and deterministic headline gates. | Evidence retrieval, telemetry, benchmark execution, persistence, or a domain's promotion policy. | AgentTrace, Probe, Agent Benchmark Lab. Intentionally unchanged in this reorganization. |
 | [`agent-benchmark-lab`](agent-benchmark-lab/README.md) | A fresh-start evidence CLI, bounded local traces, judge-aware outcome summaries, and the workflow that applies the core gate. | Course artifacts, experiment runners, datasets, prompts, provider policy, or shared audit schemas. | New agent benchmark and paper-replication repositories. |
 
-Node modules are private and resolve through `workspace:*`; none requires or expects npm
-publication. Python sibling resolution is explicit in each consumer's uv configuration.
+These modules resolve from sibling source through `workspace:*` or explicit uv paths. Some source
+repositories are public after a public-readiness audit, but none requires or expects npm or PyPI
+publication.
 
 ## Reusable services and systems
 
