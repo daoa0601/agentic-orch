@@ -1,5 +1,5 @@
 schema_version = 1
-catalog_version = "0.1.0"
+catalog_version = "0.1.1"
 
 [catalog]
 slug = "daoa0601/agentic-orch"
@@ -11,7 +11,7 @@ path = "agent-benchmark-lab"
 slug = "daoa0601/agent-benchmark-lab"
 kind = "research-workbench"
 visibility = "private"
-version = "0.1.0"
+version = "0.1.1"
 version_source = "pyproject.toml"
 
 [[repositories]]
