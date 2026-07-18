@@ -30,7 +30,7 @@ with local choices documented in its `UPSTREAM.md`.
 
 | Module | Import when you need | Do not put here | Current consumers |
 | --- | --- | --- | --- |
-| [`@agentic-orch/agent-blocks`](agent-blocks/README.md) | Generic agents, runtimes, templates, explicit member/team/organization ownership, run persistence, or the opt-in scoped Git-worktree workflow. | Team semantics, application prompts, provider routing, sandbox service policy, or research-domain claims. | Templar; new orchestrators can use the generic root. |
+| [`@agentic-orch/agent-blocks`](agent-blocks/README.md) | Generic agents, runtimes, templates, explicit member/team/organization ownership, run persistence, the opt-in scoped Git-worktree workflow, or its local Codex/OpenCode CLI adapters. | Team semantics, application prompts, provider routing, sandbox service policy, or research-domain claims. | Templar; new orchestrators can use the generic root. |
 | [`@agentic-orch/node-guardrails`](node-guardrails/README.md) | No-shell bounded processes, bounded HTTP/JSON helpers, or verified content-addressed files. | Route schemas, authorization, application errors, or domain storage models. | Agent Blocks, Drone, Nexus, Templar. |
 | [`@agentic-orch/drone-client`](drone-client/README.md) | Typed Drone v1 HTTP contracts and the hardened Node client. | Drone providers, operation policy, stores, or native workers. | Templar. |
 | [`@agentic-orch/ts-quality`](ts-quality/README.md) | Shared TypeScript presets, secret scanning, package-boundary checks, and managed hooks. | A repository's coverage floor, tests, build, or native jobs. | Agent Blocks, Drone, Nexus, Templar. |
@@ -49,7 +49,7 @@ publication.
 | [Drone](drone/README.md) | Call its versioned HTTP API. | Operator-controlled execution of untrusted artifacts in bounded disposable environments. | Job, artifact, operation, and provider state. |
 | [Nexus](nexus/README.md) | Run as a gateway or use its local core. | Owned authentication, aliases, deterministic target equivalence, local/private targets. | Its routing policy and attempt ledger. |
 | [Observer](observer/README.md) | Extend its provider-neutral Python runtime. | Operational model execution, retry/circuit policy, usage, and pricing provenance. | Each dispatch Observer actually starts and its durable usage fact. |
-| [Templar](templar/README.md) | Treat as an application/example consumer. | Policy-gated network, exercise, and source-security workflows with concrete purple, red, blue, and assurance rosters. | Templar team plans, fail-closed assignment guards, workflow inputs, artifacts, human gates, and results. |
+| [Templar](templar/README.md) | Treat as an application/example consumer. | Policy-gated network, whole-course evidence evaluation, exercise, and source-security workflows with concrete purple, red, blue, reverse-engineering, and assurance rosters. | Templar team plans, fail-closed assignment guards, workflow inputs, artifacts, sealed grading, human gates, and results. |
 
 Services are not libraries merely because their source is nearby. Prefer their versioned protocol
 unless a documented SDK boundary exists.
@@ -70,6 +70,7 @@ unless a documented SDK boundary exists.
 | --- | --- |
 | Supported hosted models, managed/BYOK provider credentials, and hosted availability routing | A managed gateway such as Vercel AI Gateway directly. |
 | Local, private, offline, custom compatible, or explicitly versioned deterministic targets | Nexus. |
+| One operator-authenticated local CLI used inside a bounded Agent Blocks run | The explicit Codex or OpenCode adapter; keep the credential in that CLI and journal the resolved adapter/model, not the secret. |
 | Provider-neutral application execution with retries, circuits, usage, and pricing provenance | Observer, with one selected transport beneath it. |
 | Reproducible benchmark traffic | One pinned provider/route, one retry owner, and retained resolved-route evidence. |
 
