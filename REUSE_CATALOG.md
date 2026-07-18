@@ -14,8 +14,8 @@ template, or only study an existing research artifact.
    - import Agent Benchmark Lab when the project needs a ready-made evidence, trace, outcome, and
      audit-gating workflow around those core contracts;
    - emit to AgentTrace when durable cross-run traces or datasets are actually required;
-   - use Agent Blocks for a composed agent workflow, opting into `scoped-worktree` only for coding
-     candidates and reviews;
+   - use Agent Blocks for generic agents or explicit block/member/team/organization ownership,
+     opting into `scoped-worktree` only for coding candidates and reviews;
    - call Drone when candidate execution needs a separately enforced sandbox;
    - route through Nexus when owned aliases, local/private targets, or deterministic routing matter;
    - use a managed gateway directly when its supported hosted catalog is the desired boundary.
@@ -30,7 +30,7 @@ with local choices documented in its `UPSTREAM.md`.
 
 | Module | Import when you need | Do not put here | Current consumers |
 | --- | --- | --- | --- |
-| [`@agentic-orch/agent-blocks`](agent-blocks/README.md) | Generic agents, runtimes, templates, run persistence, or the opt-in scoped Git-worktree workflow. | Application prompts, provider routing, sandbox service policy, or research-domain claims. | Templar; new orchestrators can use the generic root. |
+| [`@agentic-orch/agent-blocks`](agent-blocks/README.md) | Generic agents, runtimes, templates, explicit member/team/organization ownership, run persistence, or the opt-in scoped Git-worktree workflow. | Team semantics, application prompts, provider routing, sandbox service policy, or research-domain claims. | Templar; new orchestrators can use the generic root. |
 | [`@agentic-orch/node-guardrails`](node-guardrails/README.md) | No-shell bounded processes, bounded HTTP/JSON helpers, or verified content-addressed files. | Route schemas, authorization, application errors, or domain storage models. | Agent Blocks, Drone, Nexus, Templar. |
 | [`@agentic-orch/drone-client`](drone-client/README.md) | Typed Drone v1 HTTP contracts and the hardened Node client. | Drone providers, operation policy, stores, or native workers. | Templar. |
 | [`@agentic-orch/ts-quality`](ts-quality/README.md) | Shared TypeScript presets, secret scanning, package-boundary checks, and managed hooks. | A repository's coverage floor, tests, build, or native jobs. | Agent Blocks, Drone, Nexus, Templar. |
@@ -49,7 +49,7 @@ publication.
 | [Drone](drone/README.md) | Call its versioned HTTP API. | Operator-controlled execution of untrusted artifacts in bounded disposable environments. | Job, artifact, operation, and provider state. |
 | [Nexus](nexus/README.md) | Run as a gateway or use its local core. | Owned authentication, aliases, deterministic target equivalence, local/private targets. | Its routing policy and attempt ledger. |
 | [Observer](observer/README.md) | Extend its provider-neutral Python runtime. | Operational model execution, retry/circuit policy, usage, and pricing provenance. | Each dispatch Observer actually starts and its durable usage fact. |
-| [Templar](templar/README.md) | Treat as an application/example consumer. | Policy-gated network, exercise, and source-security workflows. | Templar workflow inputs, artifacts, human gates, and results. |
+| [Templar](templar/README.md) | Treat as an application/example consumer. | Policy-gated network, exercise, and source-security workflows with concrete purple, red, blue, and assurance rosters. | Templar team plans, fail-closed assignment guards, workflow inputs, artifacts, human gates, and results. |
 
 Services are not libraries merely because their source is nearby. Prefer their versioned protocol
 unless a documented SDK boundary exists.

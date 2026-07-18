@@ -1,5 +1,5 @@
 schema_version = 1
-catalog_version = "0.1.2"
+catalog_version = "0.2.0"
 
 [catalog]
 slug = "daoa0601/agentic-orch"
@@ -19,7 +19,7 @@ path = "agent-blocks"
 slug = "daoa0601/agent-blocks"
 kind = "module"
 visibility = "public"
-version = "0.1.1"
+version = "0.2.0"
 version_source = "package.json"
 
 [[repositories]]
@@ -107,7 +107,7 @@ path = "templar"
 slug = "daoa0601/templar"
 kind = "application"
 visibility = "public"
-version = "0.1.1"
+version = "0.2.0"
 version_source = "package.json"
 
 [[repositories]]

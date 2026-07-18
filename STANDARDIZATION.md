@@ -19,6 +19,7 @@ independent repositories in one coordinated local folder.
 ts-quality ---------------------> Agent Blocks, Drone, Nexus, Templar (development)
 node-guardrails ----------------> Agent Blocks, Drone, Nexus, Templar (runtime primitives)
 drone-client -------------------> Templar (Drone HTTP contract)
+agent-blocks/root --------------> Templar (member/team/organization composition)
 agent-blocks/scoped-worktree ---> Templar (orchestration template)
 ```
 
@@ -56,12 +57,13 @@ package from satisfying the dependency and documents that the coordinated folder
 
 Agent Blocks has two layers:
 
-- the root export is generic `Agent`, `AgentRuntime`, and `AgentTemplate` composition;
+- the root export is generic agents, runtimes, templates, members, teams, and organizations;
 - `templates/scoped-worktree` owns the existing Codex, Git worktree, evaluator, reviewer, and
   candidate-selection policy.
 
-Consumers must import the narrow subpath that matches what they use. Templar does not import the
-generic root for scoped-worktree contracts.
+Consumers must import the narrow subpath that matches what they use. Templar uses the generic root
+for organization composition and the scoped-worktree subpath for harness contracts. Its security
+team names, phases, member assignments, and fail-closed runtime guard remain application policy.
 
 ## Python sibling dependencies
 
@@ -107,6 +109,7 @@ Source releases use independent semantic versions and annotated `vMAJOR.MINOR.PA
 | AgentTrace | Immutable traces and derived datasets/evaluations. | Retry ownership, billing authority, operational dispatch. |
 | Nexus | Inbound gateway policy, aliases, target equivalence, attempt ledger. | Agent orchestration or experiment semantics. |
 | Drone | Trusted operation admission and sandbox execution. | Caller-selected images, commands, mounts, or host paths. |
+| Templar | Security team plans, assignment enforcement, workflow policy, human gates, and results. | Generic organization primitives or sandbox implementation. |
 
 ## Managed gateway boundary
 
