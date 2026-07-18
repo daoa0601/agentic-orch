@@ -1,5 +1,5 @@
 schema_version = 1
-catalog_version = "0.4.0"
+catalog_version = "0.4.1"
 
 [catalog]
 slug = "daoa0601/agentic-orch"
@@ -59,7 +59,7 @@ path = "drone"
 slug = "daoa0601/drone"
 kind = "service"
 visibility = "private"
-version = "0.2.0"
+version = "0.2.1"
 version_source = "package.json"
 
 [[repositories]]
@@ -107,7 +107,7 @@ path = "templar"
 slug = "daoa0601/templar"
 kind = "application"
 visibility = "public"
-version = "0.4.0"
+version = "0.4.1"
 version_source = "package.json"
 
 [[repositories]]
