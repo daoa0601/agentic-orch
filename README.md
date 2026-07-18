@@ -46,3 +46,14 @@ The detailed dependency and ownership rules live in [STANDARDIZATION.md](STANDAR
 
 Run checks from the repository you changed. There is intentionally no root command that pretends
 all projects share one environment.
+
+For direct course-specimen work, keep model authentication in the trusted host runtime. Use
+Templar's operator-only course-lab flow to invoke one digest-pinned Drone operation in a separately
+signed, no-network disposable VM, collect its content-addressed execution statement, and expose only
+validated assignment evidence to the GPT-5.6 Sol or GLM-5.2 organization. This boundary is local
+reuse across independent repositories; it does not require publishing any package.
+
+Templar materializes that validated snapshot with a digest-indexed, line-bounded observation view so
+different local model CLIs receive the same complete passive evidence. The security-team control
+plane owns phase identities and pinned-auditor tasks; models schedule and analyze within those
+blocks, but cannot invent members or broaden an assurance member's evidence boundary.

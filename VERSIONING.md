@@ -10,8 +10,7 @@ at this commit,” not “a package was uploaded to a registry.”
 - Python projects read their version from `pyproject.toml`.
 - The catalog version is recorded in `repositories.toml` and tags changes to the coordinated
   checkout, documentation, and pinned repository revisions.
-- Every project currently starts at `0.1.0`; versions advance independently rather than in
-  lockstep.
+- Projects started from `0.1.0`; versions advance independently rather than in lockstep.
 
 While a project is below `1.0.0`, a patch release is backward-compatible and a minor release may
 change an unstable API. A project reaches `1.0.0` only when its supported boundary and migration
