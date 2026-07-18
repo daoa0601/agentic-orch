@@ -1,0 +1,5 @@
+.DS_Store
+.codex-subagents/
+.env
+.env.*
+!.env.example

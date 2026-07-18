@@ -1,0 +1,126 @@
+schema_version = 1
+catalog_version = "0.1.0"
+
+[catalog]
+slug = "daoa0601/agentic-orch"
+visibility = "private"
+release_policy = "source-only"
+
+[[repositories]]
+path = "agent-benchmark-lab"
+slug = "daoa0601/agent-benchmark-lab"
+kind = "research-workbench"
+visibility = "private"
+version = "0.1.0"
+version_source = "pyproject.toml"
+
+[[repositories]]
+path = "agent-blocks"
+slug = "daoa0601/agent-blocks"
+kind = "module"
+visibility = "public"
+version = "0.1.0"
+version_source = "package.json"
+[[repositories]]
+path = "agent-trace-platform"
+slug = "daoa0601/agent-trace-platform"
+kind = "service"
+visibility = "private"
+version = "0.1.0"
+version_source = "pyproject.toml"
+
+[[repositories]]
+path = "alphaevolve"
+slug = "daoa0601/alphaevolve"
+kind = "research"
+visibility = "private"
+version = "0.1.0"
+version_source = "pyproject.toml"
+
+[[repositories]]
+path = "benchmark-audit-core"
+slug = "daoa0601/benchmark-audit-core"
+kind = "module"
+visibility = "private"
+version = "0.1.0"
+version_source = "pyproject.toml"
+
+[[repositories]]
+path = "cs-e4645-data-intensive-computing"
+slug = "daoa0601/cs-e4645-data-intensive-computing"
+kind = "research"
+visibility = "public"
+version = "0.1.0"
+version_source = "pyproject.toml"
+
+[[repositories]]
+path = "drone"
+slug = "daoa0601/drone"
+kind = "service"
+visibility = "private"
+version = "0.1.0"
+version_source = "package.json"
+
+[[repositories]]
+path = "drone-client"
+slug = "daoa0601/drone-client"
+kind = "module"
+visibility = "private"
+version = "0.1.0"
+version_source = "package.json"
+
+[[repositories]]
+path = "nexus"
+slug = "daoa0601/nexus"
+kind = "service"
+visibility = "public"
+version = "0.1.0"
+version_source = "package.json"
+
+[[repositories]]
+path = "node-guardrails"
+slug = "daoa0601/node-guardrails"
+kind = "module"
+visibility = "private"
+version = "0.1.0"
+version_source = "package.json"
+
+[[repositories]]
+path = "observer"
+slug = "daoa0601/observer"
+kind = "service"
+visibility = "private"
+version = "0.1.0"
+version_source = "pyproject.toml"
+
+[[repositories]]
+path = "probe"
+slug = "daoa0601/probe"
+kind = "research"
+visibility = "private"
+version = "0.1.0"
+version_source = "pyproject.toml"
+
+[[repositories]]
+path = "templar"
+slug = "daoa0601/templar"
+kind = "application"
+visibility = "public"
+version = "0.1.0"
+version_source = "package.json"
+
+[[repositories]]
+path = "templates/science-replication"
+slug = "daoa0601/science-replication-template"
+kind = "template"
+visibility = "private"
+version = "0.1.0"
+version_source = "pyproject.toml"
+
+[[repositories]]
+path = "ts-quality"
+slug = "daoa0601/ts-quality"
+kind = "module"
+visibility = "private"
+version = "0.1.1"
+version_source = "package.json"

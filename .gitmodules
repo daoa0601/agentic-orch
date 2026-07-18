@@ -1,0 +1,45 @@
+[submodule "agent-blocks"]
+	path = agent-blocks
+	url = https://github.com/daoa0601/agent-blocks.git
+[submodule "agent-trace-platform"]
+	path = agent-trace-platform
+	url = https://github.com/daoa0601/agent-trace-platform.git
+[submodule "alphaevolve"]
+	path = alphaevolve
+	url = https://github.com/daoa0601/alphaevolve.git
+[submodule "benchmark-audit-core"]
+	path = benchmark-audit-core
+	url = https://github.com/daoa0601/benchmark-audit-core.git
+[submodule "cs-e4645-data-intensive-computing"]
+	path = cs-e4645-data-intensive-computing
+	url = https://github.com/daoa0601/cs-e4645-data-intensive-computing.git
+[submodule "drone"]
+	path = drone
+	url = https://github.com/daoa0601/drone.git
+[submodule "drone-client"]
+	path = drone-client
+	url = https://github.com/daoa0601/drone-client.git
+[submodule "nexus"]
+	path = nexus
+	url = https://github.com/daoa0601/nexus.git
+[submodule "node-guardrails"]
+	path = node-guardrails
+	url = https://github.com/daoa0601/node-guardrails.git
+[submodule "observer"]
+	path = observer
+	url = https://github.com/daoa0601/observer.git
+[submodule "probe"]
+	path = probe
+	url = https://github.com/daoa0601/probe.git
+[submodule "templar"]
+	path = templar
+	url = https://github.com/daoa0601/templar.git
+[submodule "templates/science-replication"]
+	path = templates/science-replication
+	url = https://github.com/daoa0601/science-replication-template.git
+[submodule "ts-quality"]
+	path = ts-quality
+	url = https://github.com/daoa0601/ts-quality.git
+[submodule "agent-benchmark-lab"]
+	path = agent-benchmark-lab
+	url = https://github.com/daoa0601/agent-benchmark-lab.git
