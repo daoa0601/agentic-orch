@@ -1,127 +1,95 @@
-schema_version = 1
-catalog_version = "0.4.1"
+# Catalog of the repositories checked out under this folder (all are git submodules).
+# `depends_on` lists sibling repositories that must sit next to this one inside the same group;
+# every edge stays inside one group folder. `dev` edges are tooling only.
 
-[catalog]
-slug = "daoa0601/agentic-orch"
-visibility = "private"
-release_policy = "source-only"
+schema_version = 2
 
 [[repositories]]
-path = "agent-benchmark-lab"
-slug = "daoa0601/agent-benchmark-lab"
-kind = "research-workbench"
-visibility = "private"
-version = "0.1.1"
-version_source = "pyproject.toml"
+path = "node-stack/ts-quality"
+slug = "daoa0601/ts-quality"
+kind = "library"
+depends_on = []
 
 [[repositories]]
-path = "agent-blocks"
+path = "node-stack/node-guardrails"
+slug = "daoa0601/node-guardrails"
+kind = "library"
+depends_on = []
+
+[[repositories]]
+path = "node-stack/agent-blocks"
 slug = "daoa0601/agent-blocks"
-kind = "module"
-visibility = "public"
-version = "0.2.0"
-version_source = "package.json"
+kind = "library"
+depends_on = ["node-guardrails", "ts-quality (dev)"]
 
 [[repositories]]
-path = "agent-trace-platform"
-slug = "daoa0601/agent-trace-platform"
-kind = "service"
-visibility = "private"
-version = "0.1.0"
-version_source = "pyproject.toml"
+path = "node-stack/drone-client"
+slug = "daoa0601/drone-client"
+kind = "library"
+depends_on = []
 
 [[repositories]]
-path = "alphaevolve"
-slug = "daoa0601/alphaevolve"
-kind = "research"
-visibility = "private"
-version = "0.1.0"
-version_source = "pyproject.toml"
-
-[[repositories]]
-path = "benchmark-audit-core"
-slug = "daoa0601/benchmark-audit-core"
-kind = "module"
-visibility = "public"
-version = "0.1.0"
-version_source = "pyproject.toml"
-
-[[repositories]]
-path = "cs-e4645-data-intensive-computing"
-slug = "daoa0601/cs-e4645-data-intensive-computing"
-kind = "research"
-visibility = "public"
-version = "0.1.0"
-version_source = "pyproject.toml"
-
-[[repositories]]
-path = "drone"
+path = "node-stack/drone"
 slug = "daoa0601/drone"
 kind = "service"
-visibility = "private"
-version = "0.2.1"
-version_source = "package.json"
+depends_on = ["drone-client", "node-guardrails", "ts-quality (dev)"]
 
 [[repositories]]
-path = "drone-client"
-slug = "daoa0601/drone-client"
-kind = "module"
-visibility = "public"
-version = "0.2.0"
-version_source = "package.json"
-
-[[repositories]]
-path = "nexus"
+path = "node-stack/nexus"
 slug = "daoa0601/nexus"
 kind = "service"
-visibility = "public"
-version = "0.1.1"
-version_source = "package.json"
+depends_on = ["node-guardrails", "ts-quality (dev)"]
 
 [[repositories]]
-path = "node-guardrails"
-slug = "daoa0601/node-guardrails"
-kind = "module"
-visibility = "public"
-version = "0.1.0"
-version_source = "package.json"
-
-[[repositories]]
-path = "observer"
-slug = "daoa0601/observer"
-kind = "service"
-visibility = "private"
-version = "0.1.0"
-version_source = "pyproject.toml"
-
-[[repositories]]
-path = "probe"
-slug = "daoa0601/probe"
-kind = "research"
-visibility = "private"
-version = "0.1.0"
-version_source = "pyproject.toml"
-
-[[repositories]]
-path = "templar"
+path = "node-stack/templar"
 slug = "daoa0601/templar"
 kind = "application"
-visibility = "public"
-version = "0.4.1"
-version_source = "package.json"
+depends_on = ["agent-blocks", "drone-client", "node-guardrails", "ts-quality (dev)"]
+
+[[repositories]]
+path = "eval-stack/benchmark-audit-core"
+slug = "daoa0601/benchmark-audit-core"
+kind = "library"
+depends_on = []
+
+[[repositories]]
+path = "eval-stack/agent-trace-platform"
+slug = "daoa0601/agent-trace-platform"
+kind = "service"
+depends_on = ["benchmark-audit-core"]
+
+[[repositories]]
+path = "eval-stack/agent-benchmark-lab"
+slug = "daoa0601/agent-benchmark-lab"
+kind = "workbench"
+depends_on = ["benchmark-audit-core", "agent-trace-platform"]
+
+[[repositories]]
+path = "eval-stack/probe"
+slug = "daoa0601/probe"
+kind = "research"
+depends_on = ["benchmark-audit-core"]
+
+[[repositories]]
+path = "research/alphaevolve"
+slug = "daoa0601/alphaevolve"
+kind = "research"
+depends_on = []
+
+[[repositories]]
+path = "research/observer"
+slug = "daoa0601/observer"
+kind = "service"
+depends_on = []
+
+[[repositories]]
+path = "archive/cs-e4645-data-intensive-computing"
+slug = "daoa0601/cs-e4645-data-intensive-computing"
+kind = "frozen-research"
+depends_on = []
 
 [[repositories]]
 path = "templates/science-replication"
 slug = "daoa0601/science-replication-template"
 kind = "template"
-visibility = "private"
-version = "0.1.0"
-version_source = "pyproject.toml"
-
-[[repositories]]
-path = "ts-quality"
-slug = "daoa0601/ts-quality"
-kind = "module"
-visibility = "public"
-version = "0.1.1"
-version_source = "package.json"
+depends_on = []
