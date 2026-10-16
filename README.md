@@ -1,59 +1,102 @@
 # Agentic orchestration workspace
 
-This folder is a collection of independent projects and reusable local building blocks. It is not a
-single release unit and deliberately has no root package manager, lockfile, or registry publication
-plan. Each repository keeps its own history, environment, tests, and deployment boundary.
-
-Start with [REUSE_CATALOG.md](REUSE_CATALOG.md) when choosing components for a new project, and use
-[`templates/science-replication`](templates/science-replication/README.md) as the default starting
-point for a paper replication.
-
-Clone the coordinated checkout when you want every pinned sibling available:
+A coordinated checkout of independent repositories for building, running, and evaluating agent
+systems. Each project is a git submodule with its own history, environment, lockfile, and checks.
+Nothing here is published to a package registry; projects reuse each other only as sibling source
+checkouts.
 
 ```bash
 git clone --recurse-submodules https://github.com/daoa0601/agentic-orch.git
+# or, in an existing clone:
+git submodule update --init --recursive
 ```
 
-An existing clone can materialize the same layout with `git submodule update --init --recursive`.
-The catalog records repository custody and current visibility in
-[repositories.toml](repositories.toml); [VERSIONING.md](VERSIONING.md) defines the independent
-source-tag policy. This remains a collection of repositories, not a lockstep monorepo.
+## Layout
 
-## Main paths
+Projects are grouped by dependency. Every sibling dependency stays inside its group folder, and no
+dependency crosses groups. [repositories.toml](repositories.toml) is the machine-readable list.
 
-| Area | Projects |
+| Group | Project | What it is |
+| --- | --- | --- |
+| `node-stack/` | `ts-quality` | Shared TypeScript presets, secret scan, and git hooks (dev tooling) |
+| | `node-guardrails` | Bounded no-shell process, bounded HTTP/JSON, content-addressed files |
+| | `agent-blocks` | Agent, runtime, team, and organization building blocks; scoped-worktree template |
+| | `drone-client` | Drone v1 wire contract and hardened Node client |
+| | `drone` | Policy-gated sandbox service running one no-network VM per job |
+| | `nexus` | Authenticated OpenAI-compatible LLM gateway |
+| | `templar` | Security-analysis application built on the libraries above, calling Drone over HTTP |
+| `eval-stack/` | `benchmark-audit-core` | Audit schemas, canonical hashing, seals, deterministic headline gate |
+| | `agent-trace-platform` | AgentTrace trace lake: collector, SDK, storage, pipelines, datasets |
+| | `agent-benchmark-lab` | Runs and gates agent benchmarks; writes traces to AgentTrace |
+| | `probe` | Evidence-first inference-optimization lab for Apple Silicon |
+| `research/` | `alphaevolve` | LLM-driven evolutionary code optimization prototype |
+| | `observer` | Provider-neutral model execution, usage, and pricing provenance (mid-migration) |
+| `archive/` | `cs-e4645-data-intensive-computing` | Frozen course research artifact; study, don't extend |
+| `templates/` | `science-replication` | Starter for a computational paper replication |
+
+Dependency edges:
+
+```text
+node-stack   node-guardrails ──> agent-blocks, drone, nexus, templar
+             drone-client ─────> drone, templar
+             agent-blocks ─────> templar
+             ts-quality ───────> every Node repo (dev only)
+             drone ············> templar (HTTP only)
+eval-stack   benchmark-audit-core ──> agent-trace-platform, agent-benchmark-lab, probe
+             agent-trace-platform ──> agent-benchmark-lab
+```
+
+`research/`, `archive/`, and `templates/` projects stand alone.
+
+## Working in a repository
+
+Read the target repository's README and AGENTS.md, then run its own checks from inside it. There is
+no root package manager, lockfile, or all-projects command.
+
+## Cross-repo boundaries
+
+This section is the single home for policy that spans repositories. Project docs link here instead
+of restating it.
+
+**Sibling dependencies.** Node consumers declare `"@agentic-orch/<name>": "workspace:*"` and list
+only the siblings they need in their own `pnpm-workspace.yaml` (`../<name>`). Python consumers
+declare the dependency normally and point uv at the sibling:
+
+```toml
+[tool.uv.sources]
+benchmark-audit-core = { path = "../benchmark-audit-core", editable = true }
+```
+
+A missing sibling fails the install; there is no registry fallback. Cross-language reuse goes
+through HTTP or file-artifact contracts, never a cross-language import.
+
+**CI.** A repository's CI checks out the siblings it needs at their default branch next to itself.
+The submodule pins in this catalog are the reproducible record of a known-good combination.
+
+**One retry owner per call.** Exactly one layer owns automatic retries and fallback for a logical
+model call:
+
+| Need | Use |
 | --- | --- |
-| Local code modules | `agent-blocks`, `node-guardrails`, `drone-client`, `ts-quality`, `benchmark-audit-core` |
-| Services and applications | `agent-trace-platform`, `drone`, `nexus`, `observer`, `templar` |
-| Research workbenches and projects | `agent-benchmark-lab`, `alphaevolve`, `probe`, `cs-e4645-data-intensive-computing` |
-| Copyable starters | `templates/science-replication` |
+| Supported hosted models with managed provider credentials and availability routing | A managed gateway (e.g. Vercel AI Gateway) directly |
+| Local, private, offline, or explicitly versioned deterministic targets | Nexus |
+| Provider-neutral application execution with retries, circuits, usage, and pricing | Observer, over one transport |
+| One operator-authenticated local CLI inside a bounded Agent Blocks run | Agent Blocks' Codex/OpenCode adapter |
+| Reproducible benchmark traffic | One pinned route and one retry owner, with the resolved route recorded |
 
-The detailed dependency and ownership rules live in [STANDARDIZATION.md](STANDARDIZATION.md).
+If a managed gateway owns fallback, Nexus and Observer must not add another fallback layer for that
+call. Callers above a gateway or Nexus don't wrap the same call in their own retry loop either,
+unless the operation is explicitly safe to repeat and the extra billable work is accepted.
+AgentTrace records what happened. It is not a billing or retry authority.
 
-## Local dependency policy
+**Trace correlation.** One logical call carries one externally safe correlation ID across the
+caller, any gateway, and AgentTrace. Trace exporters emit derived spans; they don't replace a
+service's own attempt ledger.
 
-- Node consumers use the unpublished `@agentic-orch/*` names with `workspace:*` and explicit
-  sibling entries in their own `pnpm-workspace.yaml`. Repository visibility does not turn those
-  source modules into registry packages.
-- Python consumers keep a normal version constraint and use `[tool.uv.sources]` for an explicit
-  editable sibling path.
-- Cross-language reuse goes through a versioned HTTP or artifact contract, never by importing a
-  TypeScript package from Python.
-- `benchmark-audit-core` is intentionally left unchanged; consume its current API rather than
-  reorganizing it with the rest of the folder.
-- Start new benchmark-integrity work in `agent-benchmark-lab`; keep the course repository frozen as
-  a historical research artifact.
+## Starting something new
 
-Run checks from the repository you changed. There is intentionally no root command that pretends
-all projects share one environment.
-
-For direct course-specimen work, keep model authentication in the trusted host runtime. Use
-Templar's operator-only course-lab flow to invoke one digest-pinned Drone operation in a separately
-signed, no-network disposable VM, collect its content-addressed execution statement, and expose only
-validated assignment evidence to the GPT-5.6 Sol or GLM-5.2 organization. This boundary is local
-reuse across independent repositories; it does not require publishing any package.
-
-Templar materializes that validated snapshot with a digest-indexed, line-bounded observation view so
-different local model CLIs receive the same complete passive evidence. The security-team control
-plane owns phase identities and pinned-auditor tasks; models schedule and analyze within those
-blocks, but cannot invent members or broaden an assurance member's evidence boundary.
+- Paper replication: export `templates/science-replication` into a new repository (see its README).
+  Then add only what the experiment needs: `benchmark-audit-core` for evidence and gates,
+  `agent-benchmark-lab` to run and gate benchmarks, AgentTrace for durable traces, Agent Blocks for
+  agent composition, Drone for sandboxed execution, and Nexus for owned routing.
+- A project that doesn't depend on anything here belongs outside this folder.

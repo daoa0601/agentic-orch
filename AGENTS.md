@@ -1,21 +1,24 @@
 # Workspace context
 
-This folder contains independent repositories, not a monorepo. Read the target repository's own
-`AGENTS.md` before editing it and run that repository's native checks. Do not add a root lockfile or
-bulk-upgrade every project to one toolchain.
+This folder is a catalog of independent repositories, not a monorepo. Projects are grouped by
+dependency (`node-stack/`, `eval-stack/`, `research/`, `archive/`, `templates/`); see README.md for
+the layout and the cross-repo boundaries, which are the one place for policy spanning repositories.
+Read the target repository's own README/AGENTS.md before editing it and run its own checks. Do not
+add a root lockfile or bulk-upgrade every project to one toolchain.
 
-The root Git repository is a catalog and coordinated checkout. Project directories are Git
-submodules with independent histories; a catalog commit may advance a submodule pointer but must not
-collapse project source into the root repository. Never commit `.codex-subagents/` or local `.env`
-state.
+Project directories are git submodules with independent histories; a catalog commit may advance a
+submodule pointer or move a project between groups but must not collapse project source into the
+root repository. Never commit `.codex-subagents/` or local `.env` state.
 
-Local Node modules use unpublished `@agentic-orch/*` names with `workspace:*` and sibling workspace
-entries. Repository visibility does not imply registry publication. Python sibling reuse uses
-explicit uv path sources. Cross-language reuse goes through a versioned HTTP or artifact boundary.
+Siblings are reused only as source checkouts (`workspace:*` with `pnpm-workspace.yaml` entries, or
+uv path sources). Nothing is published to a registry: don't add pack checks, release procedures,
+or registry metadata. A sibling dependency must stay inside its group folder. A project that
+depends on nothing here, and isn't agent infrastructure, belongs outside this folder.
 
-`benchmark-audit-core` is a reusable reference that should not be reorganized with the rest of the
-folder. The CS-E4645 repository is a finalized research artifact. Observer is mid-migration. Avoid
-broad mechanical changes in either unless the task explicitly targets them.
+`benchmark-audit-core` is a stable reference API: don't reorganize it. CS-E4645 is a finalized
+research artifact. Observer is mid-migration. Avoid broad mechanical changes in them unless the
+task explicitly targets them.
 
-For a new paper replication, start from `templates/science-replication`, then consult
-`REUSE_CATALOG.md` and add only the components the experiment actually needs.
+Delegate only to Opus 5.5 (`opus`) for Claude subagents and workflows, and Sol 6.1 (`gpt-6.1-sol`,
+via `codex exec`) for an independent second opinion. Do not use Sonnet, Haiku, Fable, or any other
+model.
