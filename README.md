@@ -71,7 +71,9 @@ A missing sibling fails the install; there is no registry fallback. Cross-langua
 through HTTP or file-artifact contracts, never a cross-language import.
 
 **CI.** A repository's CI checks out the siblings it needs at their default branch next to itself.
-The submodule pins in this catalog are the reproducible record of a known-good combination.
+A repository that depends on a private sibling (agent-benchmark-lab) has no hosted CI, because a
+workflow token can't read another private repository; its local `make check` is the gate. The
+submodule pins in this catalog are the reproducible record of a known-good combination.
 
 **One retry owner per call.** Exactly one layer owns automatic retries and fallback for a logical
 model call:
