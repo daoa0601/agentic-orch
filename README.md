@@ -70,10 +70,9 @@ benchmark-audit-core = { path = "../benchmark-audit-core", editable = true }
 A missing sibling fails the install; there is no registry fallback. Cross-language reuse goes
 through HTTP or file-artifact contracts, never a cross-language import.
 
-**CI.** A repository's CI checks out the siblings it needs at their default branch next to itself.
-A repository that depends on a private sibling (agent-benchmark-lab) has no hosted CI, because a
-workflow token can't read another private repository; its local `make check` is the gate. The
-submodule pins in this catalog are the reproducible record of a known-good combination.
+**CI.** A repository's CI checks out the siblings it needs at their default branch next to itself,
+so a sibling it depends on must be public (a workflow token can't read another private repository).
+The submodule pins in this catalog are the reproducible record of a known-good combination.
 
 **One retry owner per call.** Exactly one layer owns automatic retries and fallback for a logical
 model call:
